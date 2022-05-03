@@ -48,3 +48,5 @@ def split_dataset(data, test_size=0.2, random_state=42):
 
     #return split datasets and labels
     return strat_train_set, train_labels, strat_test_set, test_labels
+
+# test
