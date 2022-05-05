@@ -31,6 +31,13 @@ def add_color_feature(red_df, white_df):
 def concat_dataframes(df1, df2):
     return pd.concat([df1, df2], ignore_index=True)
 
+def create_wine_dataframe():
+    red_wine = load_red_wine_data()
+    white_wine = load_white_wine_data()
+    add_color_feature(red_wine, white_wine)
+    wine = concat_dataframes(red_wine, white_wine)
+    return wine
+
 def split_dataset(data, test_size=0.2, random_state=42):
 
     # randomly subdivide dataset, using stratified sampling to maintain color category 
