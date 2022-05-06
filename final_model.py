@@ -39,5 +39,28 @@ print("Final model accuracy score:\n", test_accuracy)
 print("Final model balanced accuracy score:\n", test_balanced_accuracy)
 print("Final model confusion matrix:\n", test_confusion_matrix)
 
-# comparison to a classifier used on the data without clustering:
+# comparison to a classifier built on data without clustering:
 
+comparison_classifier = Pipeline([
+    ('std_scaler', StandardScaler()),
+    ('classifier', forest_clf),
+])
+
+comparison_classifier.fit(train, train_labels)
+
+comp_predictions = comparison_classifier.predict(test)
+
+comp_accuracy = accuracy_score(test_labels, comp_predictions)
+comp_balanced_accuracy = balanced_accuracy_score(test_labels, comp_predictions)
+comp_confusion_matrix = confusion_matrix(test_labels, comp_predictions)
+
+print("Comparison model accuracy score:\n", comp_accuracy)
+print("Comparison model balanced accuracy score:\n", comp_balanced_accuracy)
+print("Comparison model confusion matrix:\n", comp_confusion_matrix)
+
+'''
+The accuracy and balanced accuracy scores are slightly better for the classifier
+that was trained using the clustered data compared to the classifier trained on data
+without anything clustering, but the difference is minimal. Neither classifier
+is very accurate, with their balanced accuracy scores being around 35%.
+'''
